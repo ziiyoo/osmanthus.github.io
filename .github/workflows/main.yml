@@ -1,24 +1,25 @@
-name: Vuepress CI
+name: Deploy
 on:
-  # 监听 PUSH 操作
   push:
     branches:
-      # MAIN 分支，也可以改成其他分支
       - main
 jobs:
-  build:
-    runs-on: Ubuntu-20.04
+  deploy:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Install Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14.15.0'
-    - name: INSTALL
-      run: npm install
-    - name: BUILD
-      run: npm run build
-    - name: DEPOLY
-      uses: easingthemes/ssh-deploy@v2.1.5
-      with:
-        folder: docs/.vuepress/dist
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+      - run: npm install
+      - name: Build
+          run: npm run docs:build
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: docs/.vuepress/dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_KEY_OSMANTHUS }}
+
