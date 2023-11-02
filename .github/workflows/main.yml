@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node
@@ -20,4 +20,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           publish_dir: docs/.vuepress/dist
-          github_token: ${{ secrets.SEC_OSMANTHUS_TOKEN }}
+          personal_token: ${{ secrets.SEC_OSMANTHUS_TOKEN }}
