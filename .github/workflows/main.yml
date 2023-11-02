@@ -20,13 +20,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          # 选择要使用的 node 版本
           node-version: 18
           
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
-          cmd: install # will run `yarn install` command
+          cmd: install
 
       # 运行构建脚本
       - name: Build VuePress site
