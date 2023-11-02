@@ -193,15 +193,13 @@ The above demonstration showcased the scenario of not passing `Option<Param>`. N
 
 ```rust
 pub struct Param{
-    pub era: String, // era
     pub timezone: String,  // timezone
     pub strict: bool  // strict mode
 }
 ```
 
-There are 3 fields `era`, `timezone` and `strict`，the means：
+There are 2 fields `timezone` and `strict`，the means：
 
-- era: It represents the era year, such as `平成`、`明治`、`令和`. When the era is **specified**or**string contains**a specific era，osmanthus will be calculates the corresponding calendar year to ensure that the parsed year is accurate. For example`令和3年`corresponds to the year `2021`.
 - timezone: It's timezone，The final output of the calculation is dependent on the set timezone. Assuming a time string corresponds to a `utc` time of `2023-08-12 15:00:00`, but if you set the timezone to `aest`, the parsed `utc` time will be `2023-08-12 05:00:00`, as`utc = aest - 36000 seconds`.
 - strict: It represents the strict mode, which will be further explained below, but here, let's emphasize it. In the context of news and public opinion, there is a common requirement to identify the time of news publication. One important point to note is that the publication time of news cannot be later than the current local time; it must be earlier. For example, if the current time is `2023-10-10 10:00:05`, the detected publication time of the news must be earlier than the current time. It cannot be a few hours or days later. In strict mode, the Osmanthus algorithm will determine whether the time text is greater than the current time. If it is, the algorithm will skip the current suspicious text and proceed to identify the next suspicious text.
 
