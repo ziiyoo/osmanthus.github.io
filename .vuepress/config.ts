@@ -15,7 +15,7 @@ module.exports = {
     docsBranch: "main",
     docsDir: "example",
     lastUpdatedText: "",
-    "startYear": "公元前二百年 秦",
+    "startYear": "公元前二百年-秦",
     navbar: [
       { text: "Home", link: "/" },
       {
